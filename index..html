@@ -1,0 +1,1351 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happ VPN — скачать официальное приложение для обхода блокировок на ПК, Android и iPhone</title>
+  <meta name="description" content="Happ VPN — обход блокировок и глушилок на основе VLESS. Официальный сайт Happ. Скачать на Windows, Android, iPhone. Белые списки, стабильные серверы, оплата без иностранной карты. Попробуй Happ бесплатно прямо сейчас.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Happ VPN — обход блокировок и глушилок без ограничений">
+  <meta property="og:description" content="Скачай Happ VPN для Windows, Android, iPhone и Mac. Быстрый старт за 2 минуты, VLESS, белые списки и стабильные серверы.">
+  <meta name="theme-color" content="#0e0e0e">
+
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --bg-soft: #141414;
+      --card: rgba(255, 255, 255, 0.055);
+      --text: #f4f7fb;
+      --muted: #a8b0c2;
+      --line: rgba(255, 255, 255, 0.12);
+      --blue: #4da3ff;
+      --violet: #8f5cff;
+      --cyan: #54f2ff;
+      --success: #64e6a4;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(77, 163, 255, 0.22), transparent 32rem),
+        radial-gradient(circle at 90% 0%, rgba(143, 92, 255, 0.22), transparent 34rem),
+        radial-gradient(circle at 50% 70%, rgba(84, 242, 255, 0.08), transparent 34rem),
+        linear-gradient(180deg, #090909 0%, var(--bg) 42%, #080808 100%);
+      line-height: 1.6;
+      min-width: 320px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 68%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--container));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(10, 10, 10, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .logo svg {
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      filter: drop-shadow(0 10px 20px rgba(77, 163, 255, 0.35));
+    }
+
+    .logo span {
+      display: grid;
+      line-height: 1.05;
+    }
+
+    .logo small {
+      margin-top: 3px;
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      max-width: 720px;
+      padding: 10px 0;
+    }
+
+    .menu::-webkit-scrollbar {
+      display: none;
+    }
+
+    .menu a {
+      flex: 0 0 auto;
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus-visible {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      outline: none;
+    }
+
+    .nav-cta {
+      flex: 0 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      box-shadow: 0 16px 40px rgba(77, 163, 255, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 56px rgba(143, 92, 255, 0.32);
+      filter: saturate(1.12);
+      outline: none;
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: none;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 88px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(77, 163, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(77, 163, 255, 0.1);
+      color: #d9ecff;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 0 7px rgba(100, 230, 164, 0.12);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -0.07em;
+    }
+
+    h1 .grad,
+    h2 .grad {
+      background: linear-gradient(135deg, #ffffff 15%, #8ec8ff 48%, #a98aff 82%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 22px);
+    }
+
+    .hero-actions,
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.055);
+      color: #d7deeb;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .device-card {
+      position: relative;
+      min-height: 560px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 38px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035)),
+        linear-gradient(180deg, #171717, #0b0b0b);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .device-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -70px auto auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(77, 163, 255, 0.5), rgba(143, 92, 255, 0.45));
+      filter: blur(12px);
+      opacity: 0.75;
+      z-index: -1;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(5, 7, 12, 0.72);
+      padding: 28px;
+    }
+
+    .status-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(100, 230, 164, 0.12);
+      color: #baf7d4;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .lock-visual {
+      display: grid;
+      place-items: center;
+      width: min(72%, 280px);
+      aspect-ratio: 1;
+      margin: 10px auto 28px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(84, 242, 255, 0.12), transparent 64%),
+        conic-gradient(from 140deg, rgba(77, 163, 255, 0.3), rgba(143, 92, 255, 0.76), rgba(84, 242, 255, 0.35), rgba(77, 163, 255, 0.3));
+      box-shadow: 0 0 90px rgba(77, 163, 255, 0.22);
+    }
+
+    .lock-visual svg {
+      width: 52%;
+      height: 52%;
+    }
+
+    .server-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .server-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .server-item strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .server-item small {
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .signal {
+      display: inline-flex;
+      align-items: end;
+      gap: 3px;
+      height: 22px;
+    }
+
+    .signal i {
+      display: block;
+      width: 5px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--cyan), var(--blue));
+    }
+
+    .signal i:nth-child(1) { height: 8px; }
+    .signal i:nth-child(2) { height: 13px; }
+    .signal i:nth-child(3) { height: 18px; }
+    .signal i:nth-child(4) { height: 22px; }
+
+    section {
+      padding: 62px 0;
+      scroll-margin-top: 92px;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--cyan);
+      font-weight: 850;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: clamp(31px, 4vw, 52px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+    }
+
+    .section-head p,
+    .text-block p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.028));
+      padding: 24px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.17);
+    }
+
+    .card.feature {
+      min-height: 210px;
+    }
+
+    .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(77, 163, 255, 0.22), rgba(143, 92, 255, 0.2));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ddecff;
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 9px;
+      font-size: 20px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .card p,
+    .card li {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding-left: 74px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--violet));
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .banner {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 82% 12%, rgba(84, 242, 255, 0.18), transparent 25rem),
+        linear-gradient(135deg, rgba(77, 163, 255, 0.16), rgba(143, 92, 255, 0.14) 45%, rgba(255,255,255,0.055));
+      padding: clamp(30px, 5vw, 56px);
+      box-shadow: var(--shadow);
+    }
+
+    .banner::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      bottom: -120px;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(77,163,255,0.28), rgba(143,92,255,0.35));
+      filter: blur(4px);
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .protocol-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(77, 163, 255, 0.2), transparent 18rem),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+    }
+
+    .protocol-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .protocol-name strong {
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      background: linear-gradient(135deg, #ffffff, #80bdff, #a98aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .protocol-lines {
+      display: grid;
+      gap: 12px;
+    }
+
+    .protocol-lines div {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(77,163,255,0.72), rgba(143,92,255,0.18));
+    }
+
+    .protocol-lines div:nth-child(2) { width: 78%; }
+    .protocol-lines div:nth-child(3) { width: 58%; }
+
+    .check-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 13px;
+    }
+
+    .check-list li {
+      position: relative;
+      padding-left: 34px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(100, 230, 164, 0.14);
+      color: var(--success);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .number-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      counter-reset: install;
+    }
+
+    .number-list li {
+      counter-increment: install;
+      position: relative;
+      padding: 17px 17px 17px 58px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      color: #dce5f4;
+    }
+
+    .number-list li::before {
+      content: counter(install);
+      position: absolute;
+      left: 16px;
+      top: 15px;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(77, 163, 255, 0.18);
+      color: #d9ecff;
+      font-weight: 900;
+    }
+
+    .example-box {
+      margin-top: 20px;
+      border: 1px solid rgba(84, 242, 255, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      background: rgba(84, 242, 255, 0.07);
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .review {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stars {
+      color: #ffd766;
+      letter-spacing: 1px;
+      font-size: 15px;
+    }
+
+    .person {
+      color: #fff;
+      font-weight: 850;
+    }
+
+    .review blockquote {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .guarantee-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: center;
+      border-color: rgba(100, 230, 164, 0.2);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(100, 230, 164, 0.14), transparent 22rem),
+        linear-gradient(180deg, var(--card), rgba(255,255,255,0.025));
+    }
+
+    .shield {
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      background: rgba(100, 230, 164, 0.13);
+      border: 1px solid rgba(100, 230, 164, 0.24);
+      font-size: 38px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      cursor: pointer;
+      padding: 22px 24px;
+      font-weight: 850;
+      color: #fff;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: var(--cyan);
+      font-weight: 900;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      margin: 0;
+      padding: 0 24px 22px;
+      color: var(--muted);
+    }
+
+    .final {
+      padding-bottom: 90px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .seo-note {
+      max-width: 760px;
+      color: #798294;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .menu {
+        width: 100%;
+        max-width: none;
+        order: 3;
+      }
+
+      .nav-cta {
+        position: absolute;
+        right: 20px;
+        top: 14px;
+      }
+
+      .hero-grid,
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .device-card {
+        min-height: 480px;
+      }
+
+      .grid-4,
+      .reviews {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 28px, var(--container));
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-grid {
+        gap: 28px;
+      }
+
+      .hero-actions .btn,
+      .cta-actions .btn {
+        width: 100%;
+      }
+
+      .trust-row {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .device-card {
+        min-height: 430px;
+        border-radius: 28px;
+      }
+
+      .screen {
+        inset: 14px;
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .lock-visual {
+        width: min(70%, 220px);
+        margin-bottom: 18px;
+      }
+
+      section {
+        padding: 44px 0;
+      }
+
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        padding-left: 66px;
+      }
+
+      .guarantee-card {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav" aria-label="Главная навигация">
+      <a class="logo" href="#hero" aria-label="Happ VPN — на главный экран">
+        <svg viewBox="0 0 64 64" role="img" aria-label="Логотип Happ VPN — ключ и защита">
+          <defs>
+            <linearGradient id="logoGradient" x1="10" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#54f2ff"/>
+              <stop offset="0.45" stop-color="#4da3ff"/>
+              <stop offset="1" stop-color="#8f5cff"/>
+            </linearGradient>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <rect x="4" y="4" width="56" height="56" rx="18" fill="#111827" stroke="url(#logoGradient)" stroke-width="2"/>
+          <path d="M32 13l17 7v10c0 12-7.4 20.5-17 24-9.6-3.5-17-12-17-24V20l17-7z" fill="url(#logoGradient)" opacity="0.95" filter="url(#glow)"/>
+          <path d="M28 34.6a7 7 0 1 1 5.2 3.35v4.45h5.2v4.2h-5.2v4.4h-4.4V37.95a7 7 0 0 1-.8-3.35zm7-3.1a3.2 3.2 0 1 0-6.4 0 3.2 3.2 0 0 0 6.4 0z" fill="#07111f"/>
+          <path d="M21 21.5c5.7 2.2 16.3 2.2 22 0" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" opacity="0.78"/>
+        </svg>
+        <span>Happ VPN <small>обход блокировок</small></span>
+      </a>
+
+      <nav class="menu" aria-label="Якорное меню лендинга">
+        <a href="#hero">Главная</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#steps">Подключение</a>
+        <a href="#trial">Бесплатно</a>
+        <a href="#about">Что такое Happ</a>
+        <a href="#features">Функции</a>
+        <a href="#install">Установка</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#guarantee">Гарантия</a>
+        <a href="#faq">FAQ</a>
+        <a href="#download">Скачать</a>
+      </nav>
+
+      <a class="btn nav-cta" href="https://tuvp1.ru/5Sg5nF?sub1=vpnhapp">Скачать Happ VPN →</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Happ официальный · VLESS · белые списки</div>
+          <h1>Happ VPN — <span class="grad">обход блокировок и глушилок</span> без ограничений</h1>
+          <p class="lead">Скачай Happ и получи стабильный доступ к любым сайтам и сервисам. Работает на Windows, Android и iPhone. Быстрый старт без технических знаний — за 2 минуты.</p>
+
+          <div class="hero-actions">
+            <a class="btn" href="https://tuvp1.ru/5Sg5nF?sub1=vpnhapp">Скачать Happ VPN →</a>
+            <a class="btn secondary" href="#steps">Как подключиться</a>
+          </div>
+
+          <div class="trust-row" aria-label="Ключевые преимущества Happ VPN">
+            <span class="chip">Windows и ПК</span>
+            <span class="chip">Android и APK</span>
+            <span class="chip">iPhone и Mac</span>
+            <span class="chip">Оплата без иностранной карты</span>
+          </div>
+        </div>
+
+        <div class="device-card" aria-label="Интерфейс Happ VPN">
+          <div class="screen">
+            <div class="status-head">
+              <div>
+                <strong>Happ VPN</strong><br>
+                <small style="color: var(--muted);">Стабильное соединение</small>
+              </div>
+              <span class="status-pill"><span class="pulse"></span> Подключено</span>
+            </div>
+
+            <div class="lock-visual" aria-hidden="true">
+              <svg viewBox="0 0 120 120" fill="none">
+                <rect x="32" y="52" width="56" height="42" rx="13" fill="rgba(255,255,255,0.95)"/>
+                <path d="M42 52V40a18 18 0 1 1 36 0v12" stroke="rgba(255,255,255,0.95)" stroke-width="10" stroke-linecap="round"/>
+                <path d="M60 66v13" stroke="#4da3ff" stroke-width="8" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div class="server-list">
+              <div class="server-item">
+                <span><strong>Happ VLESS</strong><small>маскировка под HTTPS</small></span>
+                <span class="signal" aria-label="Высокий сигнал"><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="server-item">
+                <span><strong>Белые списки</strong><small>VPN только для нужных сайтов</small></span>
+                <span class="signal" aria-label="Высокий сигнал"><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="server-item">
+                <span><strong>Happ VPN сервера</strong><small>без перегрузок и падений</small></span>
+                <span class="signal" aria-label="Высокий сигнал"><i></i><i></i><i></i><i></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Преимущества</div>
+          <h2>Happ VPN работает там, где обычный VPN уже не помогает</h2>
+          <p>Happ впн обход создан для быстрого доступа к сайтам и сервисам без сложных настроек, очередей и падений соединения.</p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card feature">
+            <div class="icon">⚡</div>
+            <h3>Мгновенный доступ</h3>
+            <p>Подключайся без очередей и сложных настроек — Happ запускается за пару минут.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">💳</div>
+            <h3>Без иностранной карты</h3>
+            <p>Оплата привычным способом, без зарубежных банков. Happ купить можно без лишних ограничений.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">💻</div>
+            <h3>Все устройства</h3>
+            <p>Работает на Windows, Android, iPhone, Mac и ПК. Happ на ПК устанавливается быстро.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">🛡</div>
+            <h3>Стабильное соединение</h3>
+            <p>Без обрывов, даже при активных глушилках и ограничениях провайдера.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Инструкция</div>
+          <h2>Как подключить Happ VPN</h2>
+          <p>Не нужно вручную выбирать серверы и разбираться в технических параметрах. Просто скачай Happ VPN и активируй доступ.</p>
+        </div>
+
+        <div class="grid-4 steps">
+          <article class="card step">
+            <h3>Нажми «Скачать Happ»</h3>
+            <p>Используй кнопку на этой странице, чтобы перейти к установке приложения.</p>
+          </article>
+
+          <article class="card step">
+            <h3>Установи приложение</h3>
+            <p>Инструкция внутри, всё просто: Happ VPN Windows, Android и iPhone запускаются без сложностей.</p>
+          </article>
+
+          <article class="card step">
+            <h3>Получи ключ доступа</h3>
+            <p>Вставь ключ в Happ — это занимает меньше минуты.</p>
+          </article>
+
+          <article class="card step">
+            <h3>Нажми «Подключиться»</h3>
+            <p>VPN запущен, интернет работает, обход блокировок активен.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="trial">
+      <div class="container">
+        <div class="banner">
+          <div class="banner-content">
+            <div class="section-kicker">Акционное предложение</div>
+            <h2>Не уверен? Попробуй Happ VPN прямо сейчас — бесплатно!</h2>
+            <p class="lead">Скачай Happ и проверь сам, как работает обход блокировок и глушилок, прежде чем выбирать тариф. Никакой иностранной карты, никаких сложных настроек — просто установи и подключись.</p>
+
+            <div class="cta-actions">
+              <a class="btn" href="https://tuvp1.ru/5Sg5nF?sub1=vpnhapp">Попробовать бесплатно →</a>
+              <a class="btn secondary" href="#features">Посмотреть функции</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-layout">
+        <article class="card protocol-card">
+          <div>
+            <div class="section-kicker">Почему Happ — это не обычный VPN</div>
+            <div class="protocol-name">
+              <strong>VLESS</strong>
+              <span class="chip">HTTPS-like traffic</span>
+            </div>
+
+            <div class="protocol-lines" aria-hidden="true">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+
+          <p style="color: var(--muted); margin: 28px 0 0;">Happ VLESS маскирует соединение так, чтобы трафик выглядел как обычный HTTPS.</p>
+        </article>
+
+        <div class="text-block">
+          <div class="section-head">
+            <div class="section-kicker">Что такое Happ VPN</div>
+            <h2>Почему Happ — это не обычный VPN</h2>
+          </div>
+
+          <p>Happ VPN — это приложение для обхода блокировок и глушилок на основе протокола VLESS. В отличие от классических VPN, Happ использует технологию маскировки трафика, которая делает соединение неотличимым от обычного HTTPS. Именно поэтому Happ работает там, где другие VPN уже не помогают.</p>
+          <p>Одна из ключевых функций — белые списки: ты сам выбираешь, какие сайты идут через VPN, а какие — напрямую. Скорость не падает там, где это не нужно.</p>
+
+          <ul class="check-list">
+            <li>Happ обход блокировок для сайтов, сервисов и рабочих инструментов.</li>
+            <li>Happ обход глушилок при активных ограничениях сети.</li>
+            <li>Happ белые списки для точной настройки маршрутизации.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Возможности и функции</div>
+          <h2>Всё, что нужно для стабильного доступа</h2>
+          <p>Happ VPN скачать можно для основных платформ: Windows, Android, iPhone, Mac и ПК. Один аккаунт — все устройства без доплат.</p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card feature">
+            <div class="icon">🚀</div>
+            <h3>Обход блокировок и глушилок</h3>
+            <p>Работает даже там, где обычные VPN уже бессильны.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">🔐</div>
+            <h3>Протокол Happ VLESS</h3>
+            <p>Трафик выглядит как обычный HTTPS — его сложнее распознать и заблокировать.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">✅</div>
+            <h3>Белые списки сайтов</h3>
+            <p>Выбирай, что проксировать, а что оставить напрямую.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">🖥</div>
+            <h3>Happ VPN для Windows и ПК</h3>
+            <p>Полноценное приложение: скачать на ПК легко и быстро. Happ plus скачать на ПК можно по кнопке.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">🤖</div>
+            <h3>Happ VPN на Android</h3>
+            <p>Скачай APK или установи через магазин — работает сразу после ключа.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">📱</div>
+            <h3>iPhone и Mac</h3>
+            <p>Один аккаунт — все устройства без доплат и лишней настройки.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">🌐</div>
+            <h3>Собственные серверы Happ</h3>
+            <p>Стабильная инфраструктура без перегрузок и частых падений.</p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon">🔄</div>
+            <h3>Подписка без иностранной карты</h3>
+            <p>Happ VPN подписка оплачивается российскими способами, отмена — в любой момент.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="container grid-2">
+        <div>
+          <div class="section-kicker">Как начать пользоваться Happ</div>
+          <h2>Как установить Happ VPN за 2 минуты</h2>
+          <p class="lead">Happ не требует технических знаний. Вот всё, что нужно сделать:</p>
+
+          <ol class="number-list">
+            <li>Скачай приложение Happ — ссылка на этой странице: Windows, Android, iPhone.</li>
+            <li>Открой приложение и нажми «Получить ключ».</li>
+            <li>Вставь ключ в поле подключения.</li>
+            <li>Нажми «Подключиться» — готово.</li>
+            <li>Используй белые списки, чтобы настроить, какие сайты идут через VPN.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <div class="icon">✨</div>
+          <h3>Пример использования</h3>
+          <p>Открыл Happ VPN на ПК → вставил ключ → включил обход → зашёл на заблокированный сайт. Без лагов, без падений соединения, без настройки серверов вручную.</p>
+
+          <div class="example-box">
+            <strong>Happ на ПК:</strong>
+            <p style="margin-top: 8px;">Скачай приложение, активируй ключ и включи Happ VPN Windows в один клик. Такой сценарий подходит и для тех, кто впервые использует VPN.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Отзывы пользователей</div>
+          <h2>Что говорят пользователи Happ VPN</h2>
+          <p>Люди выбирают Happ за стабильность, быструю установку и понятный обход ограничений на ПК, Android и iPhone.</p>
+        </div>
+
+        <div class="reviews">
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <div class="person">Алина, Москва</div>
+            <blockquote>«Наконец нашла VPN, который реально работает с глушилками. Happ держит соединение там, где другие приложения просто падали. Белые списки — вообще находка, не надо гонять весь трафик через VPN.»</blockquote>
+          </article>
+
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <div class="person">Дмитрий, Санкт-Петербург</div>
+            <blockquote>«Поставил Happ VPN на Windows за 5 минут. Ввёл ключ — всё заработало. Рекомендую всем, кто устал бороться с блокировками на ПК.»</blockquote>
+          </article>
+
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <div class="person">Катерина, Екатеринбург</div>
+            <blockquote>«Пользуюсь для работы — нужен стабильный доступ к зарубежным сервисам. Happ не обрывается во время звонков и конференций. Наконец-то нормальный VPN.»</blockquote>
+          </article>
+
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <div class="person">Максим, Новосибирск</div>
+            <blockquote>«Попробовал бесплатно, убедился что работает — сразу взял подписку. Happ VLESS обходит то, что другие VPN не могут. Топ.»</blockquote>
+          </article>
+
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <div class="person">Ольга, Краснодар</div>
+            <blockquote>«Подруга посоветовала Happ. Думала, будет куча настроек — а тут просто скачала, вставила ключ и всё заработало. Теперь и муж пользуется 😄»</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="guarantee">
+      <div class="container">
+        <article class="card guarantee-card">
+          <div class="shield">🛡</div>
+          <div>
+            <div class="section-kicker">Гарантии</div>
+            <h2>Гарантия возврата средств</h2>
+            <p>Если после покупки подписки Happ VPN что-то пошло не так — вернём деньги без лишних вопросов. Напиши в поддержку — разберёмся в течение 24 часов.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Частые вопросы о Happ VPN</h2>
+        </div>
+
+        <div class="faq-list">
+          <details open>
+            <summary>Чем Happ отличается от обычного VPN?</summary>
+            <p>Happ использует протокол VLESS с маскировкой трафика — соединение выглядит как обычный HTTPS и не распознаётся системами блокировок и глушилок. Обычные VPN с этим уже не справляются. Happ справляется.</p>
+          </details>
+
+          <details>
+            <summary>Нужна ли иностранная карта для покупки?</summary>
+            <p>Нет. Happ VPN можно купить привычным российским способом оплаты — без зарубежных карт и банков.</p>
+          </details>
+
+          <details>
+            <summary>На каких устройствах работает Happ?</summary>
+            <p>Happ VPN работает на Windows, ПК и ноутбуках, Android через APK или магазин, iPhone и Mac. Один ключ — все устройства. Happ plus скачать на ПК можно прямо по ссылке на этой странице.</p>
+          </details>
+
+          <details>
+            <summary>Как отменить подписку Happ VPN?</summary>
+            <p>Отмена в любой момент — без штрафов и скрытых списаний. Напиши в поддержку или отмени самостоятельно в личном кабинете.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="final">
+      <div class="container">
+        <div class="banner">
+          <div class="banner-content">
+            <div class="section-kicker">Финальный шаг</div>
+            <h2>Скачать Happ VPN — официальный сайт, обход блокировок без ограничений</h2>
+            <p class="lead">Хочешь попробовать прямо сейчас? Нажми кнопку ниже — скачай Happ, получи ключ и подключись за 2 минуты. Без иностранных карт, без сложных настроек, без падений соединения. Это Happ VPN — обход глушилок, который реально работает.</p>
+
+            <div class="cta-actions">
+              <a class="btn" href="https://tuvp1.ru/5Sg5nF?sub1=vpnhapp">Скачать Happ VPN бесплатно →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="logo" aria-label="Happ VPN footer">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="footerLogoGradient" x1="10" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#54f2ff"/>
+              <stop offset="0.45" stop-color="#4da3ff"/>
+              <stop offset="1" stop-color="#8f5cff"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="56" height="56" rx="18" fill="#111827" stroke="url(#footerLogoGradient)" stroke-width="2"/>
+          <path d="M32 13l17 7v10c0 12-7.4 20.5-17 24-9.6-3.5-17-12-17-24V20l17-7z" fill="url(#footerLogoGradient)"/>
+          <path d="M28 34.6a7 7 0 1 1 5.2 3.35v4.45h5.2v4.2h-5.2v4.4h-4.4V37.95a7 7 0 0 1-.8-3.35zm7-3.1a3.2 3.2 0 1 0-6.4 0 3.2 3.2 0 0 0 6.4 0z" fill="#07111f"/>
+        </svg>
+        <span>Happ VPN <small>официальное приложение</small></span>
+      </div>
+
+      <p class="seo-note">Happ VPN скачать на ПК, Android, iPhone и Mac. Happ VPN официальный сайт, Happ купить, Happ VPN подписка, Happ VLESS, Happ белые списки и Happ VPN сервера — всё в одном приложении.</p>
+    </div>
+  </footer>
+</body>
+</html>
